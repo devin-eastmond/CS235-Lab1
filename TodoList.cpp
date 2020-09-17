@@ -49,7 +49,7 @@ int TodoList::remove(string _task) {
 void TodoList::printTodoList() {
   cout << "Todo list:" << endl;
   int dayIndex = 0;
-  for (int i = 0; i < todoTasks.size(); i++) {
+  for (int i = 0; i < todoTasks.size() - 1; i++) {
     cout << todoTasks.at(i) << endl;
     if (todoTasks.at(i) == daysOfTheWeek.at(dayIndex)) {
       dayIndex++;

@@ -1,9 +1,9 @@
 Sunday:
 
 Monday:
-- Eat cookies
 - Eat cookies!
 - Eat cookies!
+- Eat some pie
 
 Tuesday:
 
