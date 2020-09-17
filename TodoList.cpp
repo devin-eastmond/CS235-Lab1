@@ -56,7 +56,29 @@ void TodoList::printTodoList() {
 *   Prints out all items of a todo list with a particular due date (specified by _duedate)
 */
 void TodoList::printDaysTasks(string _date) {
-  cout << "Printed days tasks" << endl;
+  int i = 0;
+  try {
+    while (true) {
+      string todoTask = todoTasks.at(i);
+      //cout << todoTask.substr(0, todoTask.length() - 1) << endl;
+      if (todoTask.substr(0, todoTask.length() - 1) == _date) {
+        i++;
+        cout << _date << "\'s tasks:" << endl;
+        if (todoTasks.at(i) == "") {
+          cout << "- no tasks" << endl;
+        }
+        break;
+      }
+      i++;
+    }
+    while (todoTasks.at(i) != "") {
+      cout << todoTasks.at(i) << endl;
+      i++;
+    }
+  } catch(out_of_range& e) {
+    cout << "Error: \'" << _date << "\' is not a day of the week" << endl;
+  }
+
 }
 
 /*
