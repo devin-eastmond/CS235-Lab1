@@ -19,7 +19,13 @@ TodoList::~TodoList() {
 }
 
 void TodoList::add(string _duedate, string _task) {
-  cout << "Item added" << endl;
+  string newTask = "- " + _task;
+  int i = getDayIndex(_duedate);
+  while (todoTasks.at(i) != "") {
+    i++;
+  }
+  todoTasks.insert(todoTasks.begin() + i, newTask);
+  cout << "\'" << _task << "\' task added to " << _duedate << endl;
 }
 
 int TodoList::remove(string _task) {
@@ -43,50 +49,18 @@ void TodoList::printTodoList() {
 
 void TodoList::printDaysTasks(string _date) {
   int i = getDayIndex(_date);
-  if (i == -1) {
-    // Print error msg if input doesn't match day of the week
-    cout << "Error: \'" << _date << "\' is not a day of the week" << endl;
+  i++;
+  cout << _date << "\'s tasks:" << endl;
+  if (todoTasks.at(i) == "") {
+    // Print output message if there are no tasks for the day
+    cout << "- no tasks" << endl;
   } else {
-    i++;
-    cout << _date << "\'s tasks:" << endl;
-    if (todoTasks.at(i) == "") {
-      // Print output message if there are no tasks for the day
-      cout << "- no tasks" << endl;
-    } else {
-      // Print out all tasks for that day of the week
-      while (todoTasks.at(i) != "") {
-        cout << todoTasks.at(i) << endl;
-        i++;
-      }
-    }
-  }
-
-  /*try {
-    // Find the day of the week in the todoTasks vector
-    while (true) {
-      string todoTask = todoTasks.at(i);
-      if (todoTask.substr(0, todoTask.length() - 1) == _date) {
-        i++;
-        // if the day is found, print out a heading
-        cout << _date << "\'s tasks:" << endl;
-        if (todoTasks.at(i) == "") {
-          // Print output message if there are no tasks for the day
-          cout << "- no tasks" << endl;
-        }
-        break;
-      }
-      i++;
-    }
     // Print out all tasks for that day of the week
     while (todoTasks.at(i) != "") {
       cout << todoTasks.at(i) << endl;
       i++;
     }
-  // Print error msg if input doesn't match day of the week
-  } catch(out_of_range& e) {
-    cout << "Error: \'" << _date << "\' is not a day of the week" << endl;
-  }*/
-
+  }
 }
 
 void TodoList::readFile() {
@@ -127,6 +101,7 @@ int TodoList::getDayIndex(string day) {
     }
   } catch(out_of_range& e) {
     // The day does not exist in the array
-    return -1;
+    cout << "Error: \'" << day << "\' is not a day of the week" << endl;
+    exit(1);
   }
 }
