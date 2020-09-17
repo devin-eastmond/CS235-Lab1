@@ -4,7 +4,7 @@
 int main(int argc, char *argv[]) {
   TodoList *test = new TodoList();
   //test->printTodoList();
-  test->add("Tuesday", "Eat brownies!");
+  test->remove("Eat brownies!");
   test->printDaysTasks("Tuesday");
   delete test;
 }

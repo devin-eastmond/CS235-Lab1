@@ -29,7 +29,20 @@ void TodoList::add(string _duedate, string _task) {
 }
 
 int TodoList::remove(string _task) {
-  cout << "Item removed" << endl;
+  string taskToRemove = "- " + _task;
+  bool taskRemoved = false;
+  for (int i = 0; i < todoTasks.size(); i++) {
+    if (todoTasks.at(i) == taskToRemove) {
+      todoTasks.erase(todoTasks.begin() + i);
+      taskRemoved = true;
+      break;
+    }
+  }
+  if (taskRemoved) {
+    cout << "Successfully removed task \'" << _task << "\'" << endl;
+  } else {
+    cout << "Error: could not find task \'" << _task << "\' in your todo list" << endl;
+  }
   return 0;
 }
 
