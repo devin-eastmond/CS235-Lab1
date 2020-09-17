@@ -49,6 +49,11 @@ public:
     *   Writes all content to todolist file
     */
     void writeFile();
+
+    /*
+    *   Returns the index of a day in the todoTasks vector
+    */
+    int getDayIndex(string day);
 };
 
 #endif
